@@ -1,0 +1,35 @@
+{
+  "name": "clinica-landing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "check": "npm run lint && npm run build",
+    "test": "node scripts/test-validate.mjs",
+    "smoke": "vite build --ssr scripts/ssr-smoke.jsx --outDir dist-ssr --logLevel error && node dist-ssr/ssr-smoke.js && node -e \"require('fs').rmSync('dist-ssr',{recursive:true,force:true})\"",
+    "seed": "node --env-file=.env scripts/seed.mjs",
+    "check:firebase": "node --env-file=.env scripts/check-firebase.mjs"
+  },
+  "dependencies": {
+    "firebase": "^11.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "firebase-admin": "^13.0.2",
+    "globals": "^15.14.0",
+    "vite": "^6.0.7"
+  },
+  "overrides": {
+    "@grpc/grpc-js": "^1.13.6",
+    "uuid": "^11.1.1"
+  }
+}

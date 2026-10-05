@@ -1,0 +1,65 @@
+quiero generar una landing page sensilla con 2 viewport de alto, con toda la info en la primer niewport
+y en el segundo un form de inscripcion con 4 pasos con info de la persona, moto, alimentacion y final
+quiero que sea  simple conr eact vite, vercel para funciones serverless sde dser necesarias, firebase para los datos 
+ademas del panel de admin que se pueda modificar todo apra poder reutlziarlo con otra info y foto y todo este vinculado y se edite desde el admin
+algo moderno para prodccion que fuincione bien y profesional que sea con lo pedido y coin una estructura simple nada complejo , ya que es algo simple
+
+info de ejemplo:
+
+CLINICA OFF ROAD 4 de OCTUBRE 2026 (Novena  edicion)⚡️
+
+ 
+
+Nuestra clinica es guiada por instructores profesionales AMT (Advanced Moto Training)  para adquirir conceptos y habilidades de manejo en tierra , posiciones de manejo y control, tecnicas de frenado, gestion de equilibrio y mirada , lectura del terreno, ejercicios de practica guiados, el predio cuenta con diferentes circuitos con niveles de dificultad.  
+
+Se realiza en PANDA TROUPE Off Road - RN5 KM 71, Olivera, Provincia de Buenos Aires ( a 10 km de Lujan )
+
+Pueden ir directo al predio a las 10:30 o el que prefiera nos juntamos para rodar en grupo (se cordinara por whatapp ) 
+
+PUEDEN VENIR CON CUALQUIER MARCA y MODELO DE MOTO (la idea es que sea apta para la tierra )
+
+La inscripción al evento incluye entrada al predio, seguro, hidratacion y merchandising.
+
+VALOR $120.000,- 
+
+El ALMUERZO es opcional,  
+
+Valores: Parrilada completa con bebida de 300cc valor $40.000,- 
+
+(POR FAVOR TILDAR LA PREGUNTA SI OPTAN POR ALMORZAR para saber que cantidad preparar)
+
+PUEDEN LLEVAR SU PROPIO ALMUERZO AL PREDIO 
+
+¡Los cupos son limitados!
+
+Fecha: DOMINGO  4/octubre/2026
+
+10:30 en Panda Troupe Off Road - RN5 KM 71, Olivera, Provincia de Buenos Aires ( a 10 km de Lujan )
+
+Informacion adicional al telefono 1150443330  (Esteban Carbonell..... CARBO)
+
+En caso de lluvia se reprograma
+
+#carbosalidas
+#clinicaoffroad
+#offroad
+#clinica
+#manejo
+1 sem
+CLINICA OFF ROAD 4 de OCTUBRE 2026 (Novena edicion)⚡️
+
+Nuestra clinica es guiada por instructores profesionales AMT (Advanced Moto Training) para adquirir conceptos y habilidades de manejo en tierra , posiciones de manejo y control, tecnicas de frenado, gestion de equilibrio y mirada , lectura del terreno, ejercicios de practica guiados, el predio cuenta con diferentes circuitos con niveles de dificultad.
+Se realiza en PANDA TROUPE Off Road - RN5 KM 71, Olivera, Provincia de Buenos Aires ( a 10 km de Lujan )
+Pueden ir directo al predio a las 10:30 o el que prefiera nos juntamos para rodar en grupo (se cordinara por whatapp )
+PUEDEN VENIR CON CUALQUIER MARCA y MODELO DE MOTO (la idea es que sea apta para la tierra )
+La inscripción al evento incluye entrada al predio, seguro, hidratacion y merchandising.
+VALOR $120.000,-
+El ALMUERZO es opcional,
+Valores: Parrilada completa con bebida de 300cc valor $40.000,-
+(POR FAVOR TILDAR LA PREGUNTA SI OPTAN POR ALMORZAR para saber que cantidad preparar)
+PUEDEN LLEVAR SU PROPIO ALMUERZO AL PREDIO
+¡Los cupos son limitados!
+Fecha: DOMINGO 4/octubre/2026
+10:30 en Panda Troupe Off Road - RN5 KM 71, Olivera, Provincia de Buenos Aires ( a 10 km de Lujan )
+Informacion adicional al telefono 1150443330 (Esteban Carbonell..... CARBO)
+En caso de lluvia se reprograma

@@ -1,0 +1,22 @@
+rules_version = '2';
+
+service storage {
+  match /b/{bucket}/o {
+
+    // ---- MISMOS EMAILS QUE EN firestore.rules ----
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['admin@gmail.com'];
+    }
+
+    // Fotos de la landing: publicas para la landing, escribibles por admins.
+    match /site/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && request.resource.size < 6 * 1024 * 1024;
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

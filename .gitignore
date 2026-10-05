@@ -1,0 +1,10 @@
+node_modules
+dist
+dist-ssr
+.smoke
+.env
+.env.local
+.vercel
+*.log
+firebase-debug.log
+serviceAccount*.json
