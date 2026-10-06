@@ -110,7 +110,6 @@ export const emptyRegistration = () => ({
     almuerzo: '',
     opcionAlmuerzo: '',
     restricciones: '',
-    bebida: '',
   },
   final: {
     grupo: '',

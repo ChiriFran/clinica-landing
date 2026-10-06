@@ -20,8 +20,8 @@ export function sanitizeRegistration(payload, meta = {}) {
   if (digits(p.dni).length < 7) errors.push('DNI inválido')
   if (!emailLooksValid(p.email)) errors.push('Email inválido')
   if (digits(p.whatsapp).length < 10) errors.push('WhatsApp incompleto (incluí el área)')
-  if (!clean(m.marca, 60)) errors.push('Falta la marca de la moto')
-  if (!clean(m.modelo, 60)) errors.push('Falta el modelo de la moto')
+  if (!clean(p.experiencia, 60)) errors.push('Falta elegir el nivel de experiencia')
+  if (!clean(m.cilindradaRango, 20)) errors.push('Falta el rango de cilindrada')
   if (clean(m.anio, 4) && !/^(19|20)\d{2}$/.test(clean(m.anio, 4))) errors.push('Año inválido')
   if (a.almuerzo === 'si' && !clean(a.opcionAlmuerzo, 40)) errors.push('Falta elegir la opción de almuerzo')
   if (f.aceptaTerminos !== true) errors.push('Falta la confirmación de términos')
@@ -47,6 +47,7 @@ export function sanitizeRegistration(payload, meta = {}) {
     moto: {
       marca: clean(m.marca, 60),
       modelo: clean(m.modelo, 60),
+      cilindradaRango: clean(m.cilindradaRango, 20),
       anio: clean(m.anio, 4),
       cilindrada: clean(m.cilindrada, 12),
       tipo: clean(m.tipo, 60),
@@ -57,7 +58,7 @@ export function sanitizeRegistration(payload, meta = {}) {
       almuerzo: clean(a.almuerzo, 10),
       opcionAlmuerzo: clean(a.opcionAlmuerzo, 40),
       restricciones: clean(a.restricciones, 300),
-      bebida: clean(a.bebida, 10),
+      bebida: a.almuerzo === 'si' ? 'si' : a.almuerzo === 'no' ? 'no' : '',
     },
     final: {
       grupo: clean(f.grupo, 60),

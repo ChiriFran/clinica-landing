@@ -139,7 +139,6 @@ export function StepAlimentacion({ form, data, set, errors }) {
                 options={[
                   { value: 'parrilla', label: 'Parrillada completa' },
                   { value: 'vegetariano', label: 'Parrillada vegetariana' },
-                  { value: 'propio', label: 'Traigo mi almuerzo' },
                 ]}
               />
               {errors['alimentacion.opcionAlmuerzo'] ? (
@@ -151,13 +150,6 @@ export function StepAlimentacion({ form, data, set, errors }) {
           <div className="grid grid--2">
             <Field label="Restricciones o alergias" className="span-2" hint="Vegetariano, sin gluten, celiaco, etc.">
               <textarea rows={3} value={a.restricciones} onChange={set('alimentacion', 'restricciones')} placeholder="Opcional" />
-            </Field>
-            <Field label="Bebida 300cc" className="span-2">
-              <label className="switch">
-                <input type="checkbox" checked={a.bebida === 'si'} onChange={set('alimentacion', 'bebida')} />
-                <span className="switch__track" />
-                <span className="switch__text">{a.bebida === 'si' ? 'Incluyo bebida' : 'Sin bebida'}</span>
-              </label>
             </Field>
           </div>
         </>

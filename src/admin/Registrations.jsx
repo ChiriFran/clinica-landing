@@ -37,6 +37,7 @@ function flat(item) {
     como_se_integro: item.persona?.comoSeEntero || '',
     moto: `${item.moto?.marca || ''} ${item.moto?.modelo || ''}`.trim(),
     anio: item.moto?.anio || '',
+    cilindrada_rango: item.moto?.cilindradaRango || '',
     cilindrada: item.moto?.cilindrada || '',
     tipo: item.moto?.tipo || '',
     apta_tierra: item.moto?.aptaParaTierra || '',
@@ -96,6 +97,7 @@ export function Registrations() {
           i.persona?.whatsapp,
           i.moto?.marca,
           i.moto?.modelo,
+          i.moto?.cilindradaRango,
         ]
           .filter(Boolean)
           .join(' ')
@@ -238,10 +240,15 @@ export function Registrations() {
                       )}
                     </td>
                     <td className="small">
-                      <strong>{`${i.moto?.marca || ''} ${i.moto?.modelo || ''}`.trim()}</strong>
+                      <strong>
+                        {`${i.moto?.marca || ''} ${i.moto?.modelo || ''}`.trim() ||
+                          (i.moto?.cilindradaRango ? `Cilindrada: ${i.moto.cilindradaRango}` : 'Sin datos de moto')}
+                      </strong>
                       <br />
                       <span className="muted">
-                        {[i.moto?.anio, i.moto?.cilindrada ? `${i.moto.cilindrada}cc` : '', i.moto?.tipo].filter(Boolean).join(' · ')}
+                        {[i.moto?.anio, i.moto?.cilindradaRango, i.moto?.cilindrada ? `${i.moto.cilindrada}cc` : '', i.moto?.tipo]
+                          .filter(Boolean)
+                          .join(' · ')}
                       </span>
                       {i.final?.notas ? (
                         <>

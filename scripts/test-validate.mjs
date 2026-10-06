@@ -1,3 +1,4 @@
+import assert from 'node:assert/strict'
 import { sanitizeRegistration } from '../src/lib/validate.js'
 
 const good = {
@@ -10,13 +11,25 @@ const good = {
     localidad: 'Lujan',
     experiencia: 'Principiante',
   },
-  moto: { marca: 'Honda', modelo: 'XR 250L', anio: '2021', cilindrada: '250', tipo: 'Trail', aptaParaTierra: 'si', tieneSeguro: 'no' },
-  alimentacion: { almuerzo: 'si', opcionAlmuerzo: 'parrilla', restricciones: 'sin gluten', bebida: 'si' },
+  moto: { cilindradaRango: 'hasta 300' },
+  alimentacion: { almuerzo: 'si', opcionAlmuerzo: 'parrilla', restricciones: 'sin gluten' },
   final: { grupo: 'Si, quiero rodar en grupo', notas: '', aceptaTerminos: true },
 }
 
 const a = sanitizeRegistration(good)
-console.log('valido ->', a.errors.length === 0, JSON.stringify(a.data.persona.email))
+assert.equal(a.errors.length, 0, a.errors.join(' | '))
+assert.equal(a.data.persona.email, 'juan.perez@mail.com')
+assert.equal(a.data.moto.cilindradaRango, 'hasta 300')
+assert.equal(a.data.moto.marca, '')
+assert.equal(a.data.alimentacion.bebida, 'si')
+console.log('valido sin marca/modelo ->', JSON.stringify(a.data.persona.email))
+
+const withoutLunch = sanitizeRegistration({
+  ...good,
+  alimentacion: { ...good.alimentacion, almuerzo: 'no', opcionAlmuerzo: '' },
+})
+assert.equal(withoutLunch.errors.length, 0, withoutLunch.errors.join(' | '))
+assert.equal(withoutLunch.data.alimentacion.bebida, 'no')
 
 const badCases = [
   ['sin email', { ...good, persona: { ...good.persona, email: 'nope' } }],
@@ -24,12 +37,14 @@ const badCases = [
   ['sin terminos', { ...good, final: { ...good.final, aceptaTerminos: false } }],
   ['almuerzo sin opcion', { ...good, alimentacion: { ...good.alimentacion, opcionAlmuerzo: '' } }],
   ['anio raro', { ...good, moto: { ...good.moto, anio: '99' } }],
-  ['moto sin marca', { ...good, moto: { ...good.moto, marca: '  ' } }],
+  ['sin experiencia', { ...good, persona: { ...good.persona, experiencia: '' } }],
+  ['sin rango de cilindrada', { ...good, moto: { ...good.moto, cilindradaRango: '' } }],
 ]
 
 for (const [name, payload] of badCases) {
   const r = sanitizeRegistration(payload)
-  console.log(`${r.errors.length ? 'OK  ' : 'FALLA'} ${name} -> ${r.errors.join(' | ') || 'sin errores'}`)
+  assert.ok(r.errors.length > 0, `${name} deberia ser invalido`)
+  console.log(`OK  ${name} -> ${r.errors.join(' | ')}`)
 }
 
 console.log('\nEjemplo crudo del txt:', sanitizeRegistration(good).data.moto)

@@ -18,8 +18,8 @@ service cloud.firestore {
         && d.persona.apellido is string && d.persona.apellido.size() >= 2 && d.persona.apellido.size() <= 80
         && d.persona.email is string && d.persona.email.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$')
         && d.persona.whatsapp is string && d.persona.whatsapp.size() >= 10
-        && d.moto.marca is string && d.moto.marca.size() > 0
-        && d.moto.modelo is string && d.moto.modelo.size() > 0
+        && d.persona.experiencia is string && d.persona.experiencia.size() > 0
+        && d.moto.cilindradaRango is string && d.moto.cilindradaRango.size() > 0
         && d.final.aceptaTerminos == true;
     }
 
