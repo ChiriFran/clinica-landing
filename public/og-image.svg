@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Clinica Off Road</title>
+  <desc id="desc">Imagen promocional para la landing de la clínica de manejo en tierra.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="55%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="980" cy="110" r="120" fill="#ffffff" opacity="0.08"/>
+  <circle cx="1050" cy="170" r="70" fill="#f59e0b" opacity="0.18"/>
+  <path d="M120 430c170-110 320-165 520-170 190-5 290 25 420 95v170H120z" fill="#111827" opacity="0.5"/>
+  <path d="M150 120h260v70H150zm0 110h400v70H150zm0 110h310v70H150z" fill="#ffffff" opacity="0.08"/>
+  <g transform="translate(90 160)">
+    <rect x="0" y="0" width="380" height="260" rx="26" fill="rgba(15,23,42,0.62)" stroke="rgba(255,255,255,0.15)"/>
+    <text x="42" y="82" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#fbbf24" font-weight="700">CUPOS LIMITADOS</text>
+    <text x="42" y="145" font-family="Arial, Helvetica, sans-serif" font-size="62" fill="#ffffff" font-weight="800">CLINICA</text>
+    <text x="42" y="205" font-family="Arial, Helvetica, sans-serif" font-size="62" fill="#ffffff" font-weight="800">OFF ROAD</text>
+    <rect x="42" y="225" width="220" height="10" rx="5" fill="url(#accent)"/>
+  </g>
+  <g transform="translate(760 170)">
+    <path d="M60 180C120 40 230 20 300 115c45 62 46 141 20 190H102c-27-32-35-78-42-105Z" fill="#f97316" opacity="0.9"/>
+    <circle cx="160" cy="185" r="44" fill="#fef3c7"/>
+    <circle cx="272" cy="214" r="36" fill="#fef3c7"/>
+    <path d="M145 150l110 0" stroke="#111827" stroke-width="12" stroke-linecap="round"/>
+    <path d="M176 126l105 94" stroke="#111827" stroke-width="12" stroke-linecap="round"/>
+    <path d="M272 176l52 58" stroke="#111827" stroke-width="12" stroke-linecap="round"/>
+  </g>
+</svg>
