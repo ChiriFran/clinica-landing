@@ -40,7 +40,7 @@ export function StepPersona({ form, data, set, errors }) {
     <div className="step">
       <header className="step__head">
         <h3>Paso 1 · Tu persona</h3>
-        <p>Conocemos who's coming.</p>
+        <p>Conocemos.</p>
       </header>
       <div className="grid grid--2">
         <Field label="Nombre *" error={errors['persona.nombre']}>
