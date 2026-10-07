@@ -20,16 +20,33 @@ const a = sanitizeRegistration(good)
 assert.equal(a.errors.length, 0, a.errors.join(' | '))
 assert.equal(a.data.persona.email, 'juan.perez@mail.com')
 assert.equal(a.data.moto.cilindradaRango, 'hasta 300')
-assert.equal(a.data.moto.marca, '')
-assert.equal(a.data.alimentacion.bebida, 'si')
+assert.deepEqual(a.data.moto, { cilindradaRango: 'hasta 300' })
+assert.equal('bebida' in a.data.alimentacion, false)
 console.log('valido sin marca/modelo ->', JSON.stringify(a.data.persona.email))
 
 const withoutLunch = sanitizeRegistration({
   ...good,
-  alimentacion: { ...good.alimentacion, almuerzo: 'no', opcionAlmuerzo: '' },
+  alimentacion: { ...good.alimentacion, almuerzo: 'no', opcionAlmuerzo: '', restricciones: '' },
 })
 assert.equal(withoutLunch.errors.length, 0, withoutLunch.errors.join(' | '))
-assert.equal(withoutLunch.data.alimentacion.bebida, 'no')
+assert.deepEqual(withoutLunch.data.alimentacion, { almuerzo: 'no' })
+
+const withoutOptionalValues = sanitizeRegistration({
+  ...good,
+  persona: { ...good.persona, localidad: '', comoSeEntero: '' },
+  alimentacion: { almuerzo: 'no', opcionAlmuerzo: '', restricciones: '' },
+  final: { ...good.final, grupo: '', notas: '' },
+})
+assert.deepEqual(withoutOptionalValues.data.persona, {
+  nombre: 'Juan',
+  apellido: 'Perez',
+  dni: '30111222',
+  email: 'juan.perez@mail.com',
+  whatsapp: '11 5044-3333',
+  experiencia: 'Principiante',
+})
+assert.deepEqual(withoutOptionalValues.data.alimentacion, { almuerzo: 'no' })
+assert.deepEqual(withoutOptionalValues.data.final, { aceptaTerminos: true })
 
 const badCases = [
   ['sin email', { ...good, persona: { ...good.persona, email: 'nope' } }],

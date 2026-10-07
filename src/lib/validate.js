@@ -5,6 +5,10 @@
 
 const clean = (v, max = 300) => String(v ?? '').trim().slice(0, max)
 const digits = (v) => String(v || '').replace(/\D/g, '')
+const addIfPresent = (target, key, value, max) => {
+  const cleaned = clean(value, max)
+  if (cleaned) target[key] = cleaned
+}
 
 export const emailLooksValid = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v || '').trim())
 
@@ -28,43 +32,38 @@ export function sanitizeRegistration(payload, meta = {}) {
 
   if (errors.length) return { errors, data: null }
 
+  const persona = {
+    nombre: clean(p.nombre, 80),
+    apellido: clean(p.apellido, 80),
+    dni: clean(p.dni, 16),
+    email: clean(p.email, 160).toLowerCase(),
+    whatsapp: clean(p.whatsapp, 40),
+    experiencia: clean(p.experiencia, 60),
+  }
+  addIfPresent(persona, 'localidad', p.localidad, 80)
+  addIfPresent(persona, 'comoSeEntero', p.comoSeEntero, 120)
+
+  const alimentacion = {}
+  addIfPresent(alimentacion, 'almuerzo', a.almuerzo, 10)
+  if (a.almuerzo === 'si') addIfPresent(alimentacion, 'opcionAlmuerzo', a.opcionAlmuerzo, 40)
+  addIfPresent(alimentacion, 'restricciones', a.restricciones, 300)
+
+  const final = { aceptaTerminos: true }
+  addIfPresent(final, 'grupo', f.grupo, 60)
+  addIfPresent(final, 'notas', f.notas, 500)
+
   const data = {
     receipt: '',
     status: 'pendiente',
     contentVersion: Number(meta.contentVersion) || 1,
     source: 'web',
     createdAt: new Date().toISOString(),
-    persona: {
-      nombre: clean(p.nombre, 80),
-      apellido: clean(p.apellido, 80),
-      dni: clean(p.dni, 16),
-      email: clean(p.email, 160).toLowerCase(),
-      whatsapp: clean(p.whatsapp, 40),
-      localidad: clean(p.localidad, 80),
-      experiencia: clean(p.experiencia, 60),
-      comoSeEntero: clean(p.comoSeEntero, 120),
-    },
+    persona,
     moto: {
-      marca: clean(m.marca, 60),
-      modelo: clean(m.modelo, 60),
       cilindradaRango: clean(m.cilindradaRango, 20),
-      anio: clean(m.anio, 4),
-      cilindrada: clean(m.cilindrada, 12),
-      tipo: clean(m.tipo, 60),
-      aptaParaTierra: clean(m.aptaParaTierra, 20),
-      tieneSeguro: clean(m.tieneSeguro, 20),
     },
-    alimentacion: {
-      almuerzo: clean(a.almuerzo, 10),
-      opcionAlmuerzo: clean(a.opcionAlmuerzo, 40),
-      restricciones: clean(a.restricciones, 300),
-      bebida: a.almuerzo === 'si' ? 'si' : a.almuerzo === 'no' ? 'no' : '',
-    },
-    final: {
-      grupo: clean(f.grupo, 60),
-      notas: clean(f.notas, 500),
-      aceptaTerminos: true,
-    },
+    alimentacion,
+    final,
   }
 
   return { errors: [], data }

@@ -7,6 +7,9 @@ const MAX_LOADED = 500
 
 export { emailLooksValid, sanitizeRegistration } from './validate'
 
+export const hasIncludedBeverage = (alimentacion) =>
+  alimentacion?.bebida === 'si' || (!alimentacion?.bebida && alimentacion?.almuerzo === 'si')
+
 async function hashId(version, email) {
   const raw = `${version}|${String(email).toLowerCase()}`
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw))
@@ -54,7 +57,7 @@ export function computeStats(items) {
     if (i.status === 'rechazado') stats.rechazados += 1
     if (i.status === 'cancelado') stats.cancelados += 1
     if (i.alimentacion?.almuerzo === 'si') stats.almuerzo += 1
-    if (i.alimentacion?.bebida === 'si') stats.conBebida += 1
+    if (hasIncludedBeverage(i.alimentacion)) stats.conBebida += 1
     if (String(i.final?.grupo || '').toLowerCase().startsWith('si')) stats.grupo += 1
   }
   return stats

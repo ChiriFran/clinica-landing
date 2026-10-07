@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { deleteRegistration, listRegistrations, setRegistrationStatus } from '../lib/registrationsRepo'
+import { deleteRegistration, hasIncludedBeverage, listRegistrations, setRegistrationStatus } from '../lib/registrationsRepo'
 import { downloadCsv } from '../lib/csv'
 
 const STATUS = [
@@ -45,7 +45,7 @@ function flat(item) {
     almuerzo: item.alimentacion?.almuerzo || '',
     opcion_almuerzo: item.alimentacion?.opcionAlmuerzo || '',
     restricciones: item.alimentacion?.restricciones || '',
-    bebida: item.alimentacion?.bebida || '',
+    bebida: hasIncludedBeverage(item.alimentacion) ? 'si' : '',
     grupo: item.final?.grupo || '',
     notas: item.final?.notas || '',
     estado: item.status,
@@ -261,8 +261,8 @@ export function Registrations() {
                       {i.alimentacion?.almuerzo === 'si' ? (
                         <>
                           <strong>{i.alimentacion.opcionAlmuerzo || 'si'}</strong>
-                          {i.alimentacion.bebida === 'si' ? <br /> : null}
-                          {i.alimentacion.bebida === 'si' ? <span className="muted">con bebida</span> : null}
+                          {hasIncludedBeverage(i.alimentacion) ? <br /> : null}
+                          {hasIncludedBeverage(i.alimentacion) ? <span className="muted">con bebida</span> : null}
                           {i.alimentacion.restricciones ? (
                             <>
                               <br />
