@@ -9,7 +9,7 @@ function Icon({ name, className = '' }) {
     burger: 'M4 8h16M4 13h16M4 18h10',
     badge: 'M12 3 4 6.5V12c0 4.4 3.4 8.4 8 9.5 4.6-1.1 8-5.1 8-9.5V6.5L12 3Z',
     whatsapp:
-      'M3.5 20.5 5 16.2A8 8 0 1 1 8 19.3l-4.5 1.2Zm5-8.3c.2 1.2 1.6 3 2.8 3.6.7.3 1.2.1 1.5-.4l.4-.6c.1-.2.3-.2.5-.1l1.2.7c.2.1.3.3.2.6a2.4 2.4 0 0 1-2 1.4c-1.3 0-3.6-1.2-4.9-2.6-1.1-1.2-1.9-2.7-1.9-3.5 0-.5.2-.9.5-1.1l.3-.2c.2-.1.4 0 .5.2l.4.6c.1.2 0 .3-.1.5l-.3.4c-.1.2-.1.3 0 .5.5 1 1.4 2.3 2.3 2.9.2.1.4.1.5 0l.5-.6c.1-.2.3-.2.5-.1Z',
+      'M3.5 20.5 5 16.2A8 8 0 1 1 8 19.3l-4.5 1.2Zm5-8.3c.2 1.2 1.6 3 2.8 3.6.7.3 1.2.1 1.5-.4l.4-.6c.1-.2.3-.2.5-.1l1.2.7c.2.1.3.3.2.6a2.4 2.4 0 0 1-2 1.4c-1.3 0-3.6-1.2-4.9-2.6-1.1-1.2-1.9-2.7-1',
     arrow: 'M5 12h14m-6-6 6 6-6 6',
     external: 'M14 4h6v6M20 4 11 13M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5',
     chevron: 'm6 9 6 6 6-6',
@@ -70,14 +70,18 @@ function Point({ icon, children, accent }) {
 export function Hero({ content, state }) {
   const [openFaq, setOpenFaq] = useState(null)
   const { brand, hero, about, event, pricing, faq, contact, social, theme } = content
-  const showImage = theme?.showHeroImage !== false && hero.image
+  const safeImage = typeof hero?.image === 'string' ? hero.image.trim() : ''
+  const showImage = theme?.showHeroImage !== false && Boolean(safeImage)
 
   return (
     <section className="hero" id="inicio">
       {showImage ? (
         <div
           className="hero__bg"
-          style={{ backgroundImage: `url(${hero.image})`, opacity: theme?.heroImageOpacity ?? 0.45 }}
+          style={{
+            backgroundImage: `url(${JSON.stringify(safeImage).slice(1, -1)})`,
+            opacity: theme?.heroImageOpacity ?? 0.45,
+          }}
           aria-hidden="true"
         />
       ) : (
